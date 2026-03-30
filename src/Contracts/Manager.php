@@ -18,6 +18,6 @@ interface Manager
 
     public function clear(): void;
 
-    /** @return Collection<key, Checkpoint> */
+    /** @return Collection<int, Checkpoint> */
     public function history(): Collection;
 }

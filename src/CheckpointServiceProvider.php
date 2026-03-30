@@ -29,12 +29,12 @@ class CheckpointServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
 
             $this->publishes([
-                __DIR__.'/../config/winder.php' => config_path('winder.php'),
-            ], 'winder-config');
+                __DIR__.'/../config/checkpoint.php' => config_path('checkpoint.php'),
+            ], 'checkpoint-config');
 
             $this->publishesMigrations([
-                __DIR__.'/../database/migrations/2026_26_03_create_snapshots_table.php' => database_path('migrations/'.date('Y_m_d_His').'_create_snapshots_table.php'),
-            ], 'winder-migrations');
+                __DIR__.'/../database/migrations/2026_26_03_create_checkpoints_table.php' => database_path('migrations/'.date('Y_m_d_His').'_create_checkpoints_table.php'),
+            ], 'checkpoint-migrations');
         }
     }
 }

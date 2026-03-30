@@ -3,6 +3,7 @@
 namespace Lageg\Checkpoint\Traits;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Lageg\Checkpoint\Checkpoint;
 use Lageg\Checkpoint\Contracts\Manager;
 use Lageg\Checkpoint\Facades\CheckpointFacade;
 use Lageg\Checkpoint\Models\CheckpointModel;
@@ -24,13 +25,13 @@ trait HasCheckpoints
             ->where('model_type', static::class);
     }
 
-    public function latestCheckpoint()
+    public function latestCheckpoint(): ?Checkpoint
     {
         return CheckpointFacade::for($this)->history()->sortByDesc('id')->last();
     }
 
-    public function clearCheckpoints()
+    public function clearCheckpoints(): void
     {
-        return CheckpointFacade::for($this)->clear();
+        CheckpointFacade::for($this)->clear();
     }
 }

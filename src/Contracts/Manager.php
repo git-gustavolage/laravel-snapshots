@@ -10,7 +10,7 @@ interface Manager
 {
     public function for(Model $model): static;
 
-    public function context(string $context_type, string $context_identifier = 'default'): static;
+    public function context(string $context_type, ?string $context_identifier = null): static;
 
     public function save(array $fields = []): Checkpoint;
 

@@ -10,7 +10,7 @@ use Lageg\Checkpoint\Models\CheckpointModel;
 
 trait HasCheckpoints
 {
-    public function checkpoint(string $context, string $identifier = 'default'): Manager
+    public function checkpoint(string $context, ?string $identifier = null): Manager
     {
         if (! $this->exists) {
             throw new \RuntimeException('Model must be persisted');

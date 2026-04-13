@@ -38,7 +38,7 @@ final class CheckpointManager implements Manager
         return $this;
     }
 
-    public function context(string $context_type, string $context_identifier = 'default'): static
+    public function context(string $context_type, ?string $context_identifier = null): static
     {
         if (! isset($this->model)) {
             throw new \RuntimeException('Model not defined');

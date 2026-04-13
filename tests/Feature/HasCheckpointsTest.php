@@ -149,10 +149,23 @@ it('isolates by context identifier', function () {
 
     $model->checkpoint('checkpoint', 'a')->save(['value']);
     $model->checkpoint('checkpoint', 'b')->save(['value']);
-
+    
     $a = $model->checkpoint('checkpoint', 'a')->history();
     $b = $model->checkpoint('checkpoint', 'b')->history();
-
+    
     expect($a)->toHaveCount(1);
     expect($b)->toHaveCount(1);
+    });
+    
+it('list all checkpoint of a context if no identifier is recieved', function () {
+    $model = FakeModel::create(['value' => 'x']);
+    
+    $model->checkpoint('checkpoint')->save(['value']);
+    $model->checkpoint('checkpoint', 'b')->save(['value']);
+
+    $history = $model->checkpoint('checkpoint')->history();
+
+    expect($history->count())->toBe(2);
+    expect($history->last()->context_identifier)->toBe('b');
+    expect($history->first()->context_identifier)->toBe('default');
 });
